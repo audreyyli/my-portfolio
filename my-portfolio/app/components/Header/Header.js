@@ -52,7 +52,7 @@ export default function Header() {
             target="_blank" // Open the link in a new tab
             rel="noopener noreferrer" // For security reasons when using target="_blank"
           >
-            Let's Connect!
+            Let&apos;s Connect!
           </Button>
         </Box>
       </Toolbar>

@@ -61,14 +61,14 @@ export default function AboutMe() {
 
           <Typography variant="body1" sx={{ color: '#666', lineHeight: '1.6' }}>
             By day, I study Computer Science & Business Administration at the Univeristy of Western & Ivey School of Business. By night, I immerse myself in the world of design and technology, crafting thoughtful, user-centered solutions. 
-            I'm currently on the lookout for a Summer 2025 internship where I can collaborate with a passionate team and explore new ways to connect people through design.
+            I&apos;m currently on the lookout for a Summer 2025 internship where I can collaborate with a passionate team and explore new ways to connect people through design.
           </Typography>
           <Typography variant="body1" sx={{ color: '#666', lineHeight: '1.6', marginTop: "20px" }}>
-            What I love about UX is its versatility — it's the story behind every great product and the reason things just make sense to users. From ideation to development, I love being part of the entire process.
+            What I love about UX is its versatility — it&apos;s the story behind every great product and the reason things just make sense to users. From ideation to development, I love being part of the entire process.
           </Typography>
           <Typography variant="body1" sx={{ color: '#666', lineHeight: '1.6', marginTop: "20px" }}>
-          I believe great design happens at the intersection of empathy, creativity, and strategy. For me, it’s about more than just pixels on a screen; it’s about solving real problems and building products that make a difference.
-          I’m constantly learning and inspired by how design can shape the way we interact with the world, and I’m eager to continue pushing the boundaries of what’s possible.
+          I believe great design happens at the intersection of empathy, creativity, and strategy. For me, it&apos;s about more than just pixels on a screen; it&apos;s about solving real problems and building products that make a difference.
+          I&apos;m constantly learning and inspired by how design can shape the way we interact with the world, and I&apos;m eager to continue pushing the boundaries of what&apos;s possible.
           </Typography>
         </Box>
       </Box>

@@ -3,7 +3,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Header from "/Users/audreyli/Documents/GitHub/my_portfolio/my-portfolio/app/components/Header/Header.js";
 import Aside from "/Users/audreyli/Documents/GitHub/my_portfolio/my-portfolio/app/components/Projects/Aside.js";
-import { Typography, Box, IconButton } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import React from "react";
 import Footer from "/Users/audreyli/Documents/GitHub/my_portfolio/my-portfolio/app/components/Footer/Footer.js";
 
@@ -40,7 +40,7 @@ function MyApp({}) {
             variant="h4"
             sx={{ fontWeight: "bold", textTransform: "none", color: "#444" }}
           >
-            👋 Hi there! I'm Audrey Li!
+            👋 Hi there! I&apos;m Audrey Li!
           </Typography>
 
           {/* Wrapping Simple and Bubbly in a Hoverable Container */}
@@ -202,7 +202,7 @@ function MyApp({}) {
               marginTop: "20px",
             }}
           >
-            That's my approach to design. I'm a product designer & developer
+            That&apos;s my approach to design. I&apos;m a product designer & developer
             with a deep passion for creating user-centered solutions that bridge
             aesthetics and functionality.
           </Typography>
@@ -235,7 +235,7 @@ function MyApp({}) {
           image="/images/EpiPlan.png"
           title="A Companion for Dietary Restrictions"
           company=""
-          description="Along with another designer, we designed EpiPlan, a mobile app to help individuals with dietary restrictions navigate food choices. Through user research, I identified key pain points and improved the app's functionality to address challenges like understanding food labels and finding suitable dining options."
+          description="Along with another designer, we designed EpiPlan, a mobile app to help individuals with dietary restrictions navigate food choices. Through user research, I identified key pain points and improved the app&apos;s functionality to address challenges like understanding food labels and finding suitable dining options."
           link="/project1"
           flip={true}
           width="450px"
@@ -247,7 +247,7 @@ function MyApp({}) {
           image="/images/WUKSA.png"
           title="Crafting a Bold New Identity"
           company="WesternU Korean Student Association"
-          description="As the Head of Marketing, I initiated a redesign of the organization's brand aesthetic, ensuring a fresh and modern look that aligned with both the team's vision and our sponsors' expectations. This involved collaborating closely with stakeholders to create a cohesive brand identity that resonated across all platforms."
+          description="As the Head of Marketing, I initiated a redesign of the organization&apos;s brand aesthetic, ensuring a fresh and modern look that aligned with both the team&apos;s vision and our sponsors&apos; expectations. This involved collaborating closely with stakeholders to create a cohesive brand identity that resonated across all platforms."
           link="/project1"
           flip={false}
           width="600px"
