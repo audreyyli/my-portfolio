@@ -32,10 +32,10 @@ const Aside = ({ image, title, company, description, link, flip, width, height, 
           <Typography variant="h4" component="div" sx={{ marginBottom: '8px', lineHeight: "30px", color: "#444" }}>
             {title}
           </Typography>
-          <Typography variant="h6" component="div" sx={{ marginBottom: '8px', color: "#666" }}>
+          <Typography variant="h6" component="div" sx={{ fontSize: "20px", marginBottom: '8px', color: "#666" }}>
             {company}
           </Typography>
-          <Typography variant="body2" sx={{ marginBottom: '12px', color: "#888" }}>
+          <Typography variant="body2" sx={{ fontSize: "16px", marginBottom: '12px', color: "#888" }}>
             {description}
           </Typography>
 
@@ -49,10 +49,12 @@ const Aside = ({ image, title, company, description, link, flip, width, height, 
                 borderRadius: "22px", 
                 paddingX: "30px", 
                 position: "relative",
+                boxShadow: "none",
                 transition: 'padding 0.3s ease', // Smooth padding transition
                 '&:hover': {
-                  backgroundColor: '#F8F8F8', // Light grey background
-                  color: '#002366',
+                  backgroundColor: 'rgba(0, 35, 102, 0.7)', // Light grey background
+                  color: '#fff',
+                  boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.2)",
                   paddingRight: '50px', // Increase padding to make space for arrow
                   '& .arrow': { 
                     opacity: 1, // Make arrow visible

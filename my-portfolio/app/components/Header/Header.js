@@ -24,10 +24,10 @@ export default function Header() {
 
         {/* Center: Navigation buttons using CustomButton */}
         <Box sx={{ display: 'flex', justifyContent: 'center', gap: '20px', flexGrow: 2 }}>
-          <Link href="/work" passHref>
+          <Link href="/WorkPage" passHref>
             <CustomButton variantType="header" sx={{ textTransform: 'none' }}>Work</CustomButton>
           </Link>
-          <Link href="/projects" passHref>
+          <Link href="/ProjectsPage" passHref>
             <CustomButton variantType="header" sx={{ textTransform: 'none' }}>Projects</CustomButton>
           </Link>
           <Link href="/GraphicsPage" passHref>
@@ -41,19 +41,25 @@ export default function Header() {
         {/* Right: "Let's Connect!" Button */}
         <Box sx={{ flexGrow: 1, textAlign: "right" }}>
         <Button 
-            variant="contained" 
-            sx={{ textTransform: 'none', backgroundColor: "#002366", borderRadius: "22px", paddingX: "20px", 
-                '&:hover': {
-                    backgroundColor: '#F8F8F8', // Light grey background
-                    color: '#002366',
-                },
-             }} 
-            href="https://www.linkedin.com/in/audreylii/" 
-            target="_blank" // Open the link in a new tab
-            rel="noopener noreferrer" // For security reasons when using target="_blank"
-          >
-            Let&apos;s Connect!
-          </Button>
+          variant="contained" 
+          sx={{ 
+            textTransform: 'none', 
+            backgroundColor: "#002366", 
+            borderRadius: "22px", 
+            paddingX: "20px", 
+            boxShadow: "none",
+            '&:hover': {
+              backgroundColor: 'rgba(0, 35, 102, 0.7)',
+              color: '#fff',
+              boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.2)",
+            },
+          }} 
+          href="https://www.linkedin.com/in/audreylii/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+        >
+          Let&apos;s Connect!
+        </Button>
         </Box>
       </Toolbar>
     </AppBar>
