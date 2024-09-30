@@ -41,7 +41,7 @@ export default function UnderConstruction() {
 
         {/* Short Paragraph */}
         <Typography variant="body1" sx={{ color: '#666', maxWidth: '600px', lineHeight: '1.6' }}>
-          I'm currently working hard to bring you an awesome experience. Stay tuned, and check back soon for exciting updates!
+          I&apos;m currently working hard to bring you an awesome experience. Stay tuned, and check back soon for exciting updates!
         </Typography>
 
         <Button 

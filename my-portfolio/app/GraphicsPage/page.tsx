@@ -1,7 +1,7 @@
 "use client";
 import Header from "../components/Header/Header";
 import PictureGrid from "../components/Pictures/PictureGrid";
-import { Typography, Box, Link, IconButton, Drawer } from "@mui/material";
+import { Typography, Box, Link } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Footer from "../components/Footer/Footer";
