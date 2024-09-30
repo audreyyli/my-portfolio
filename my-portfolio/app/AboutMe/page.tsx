@@ -10,6 +10,15 @@ const theme = createTheme({
     fontFamily:
       '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
   },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
 });
 
 export default function AboutMe() {
@@ -22,23 +31,25 @@ export default function AboutMe() {
       <Box
         sx={{
           display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' }, // Stack vertically on small screens, side by side on larger
           alignItems: 'center',
           justifyContent: 'center',
-          maxWidth: '1200px', // Adjust width as needed
+          maxWidth: '1200px',
           margin: '0 auto',
-          padding: '40px',
-          minHeight: '80vh', // Ensure the content takes enough space before footer
+          padding: { xs: '20px', md: '40px' }, // Smaller padding on mobile
+          minHeight: '80vh',
         }}
       >
         {/* Left: Image Section */}
         <Card
           sx={{
-            width: '2800px', // Adjust image size as needed
+            width: { xs: '100%', md: '2800px' }, // Full width on mobile, fixed width on larger screens
             height: 'auto',
-            boxShadow: 'none', // Remove card shadow
-            borderRadius: '16px', // Rounded corners for the image
+            boxShadow: 'none',
+            borderRadius: '16px',
             overflow: 'hidden',
-            marginRight: '40px', // Space between the image and text
+            marginBottom: { xs: '20px', md: '0' }, // Space below the image on mobile
+            marginRight: { md: '40px' }, // Space between image and text on larger screens
           }}
         >
           <CardMedia
@@ -54,51 +65,53 @@ export default function AboutMe() {
         </Card>
 
         {/* Right: Text Section */}
-        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'left' }}> {/* Always left-aligned */}
           <Typography variant="h4" sx={{ fontWeight: 'bold', color: '#444', marginBottom: '16px' }}>
             A Little Bit About Me...
           </Typography>
 
           <Typography variant="body1" sx={{ fontSize: "18px", marginTop: "20px", color: '#666', lineHeight: '1.6' }}>
-            By day, I study Computer Science & Business Administration at the Univeristy of Western & Ivey School of Business. By night, I immerse myself in the world of design and technology, crafting thoughtful, user-centered solutions. 
+            By day, I study Computer Science & Business Administration at the University of Western & Ivey School of Business. By night, I immerse myself in the world of design and technology, crafting thoughtful, user-centered solutions. 
             I&apos;m currently on the lookout for a Summer 2025 internship where I can collaborate with a passionate team and explore new ways to connect people through design.
           </Typography>
           <Typography variant="body1" sx={{ fontSize: "18px", color: '#666', lineHeight: '1.6', marginTop: "20px" }}>
             What I love about UX is its versatility — it&apos;s the story behind every great product and the reason things just make sense to users. From ideation to development, I love being part of the entire process.
           </Typography>
           <Typography variant="body1" sx={{ fontSize: "18px", color: '#666', lineHeight: '1.6', marginTop: "20px" }}>
-          I believe great design happens at the intersection of empathy, creativity, and strategy. For me, it&apos;s about more than just pixels on a screen; it&apos;s about solving real problems and building products that make a difference.
-          I&apos;m constantly learning and inspired by how design can shape the way we interact with the world, and I&apos;m eager to continue pushing the boundaries of what&apos;s possible.
+            I believe great design happens at the intersection of empathy, creativity, and strategy. For me, it&apos;s about more than just pixels on a screen; it&apos;s about solving real problems and building products that make a difference.
+            I&apos;m constantly learning and inspired by how design can shape the way we interact with the world, and I&apos;m eager to continue pushing the boundaries of what&apos;s possible.
           </Typography>
         </Box>
       </Box>
 
       <Box
         sx={{
-          display: "flex", // Use flexbox to align image and text side by side
-          flexDirection: "row",
+          display: "flex",
+          flexDirection: { xs: "column", md: "row" }, // Stack vertically on mobile, row on larger screens
           alignItems: "center",
           justifyContent: "space-between",
           marginTop: "20px",
-          marginLeft: "50px",
           maxWidth: "1160px",
           margin: "0 auto",
-          borderLeft: "4px solid #D9E6FF",
+          borderLeft: { md: "4px solid #D9E6FF" }, // Border only on larger screens
           backgroundColor: "rgba(217, 230, 255, 0.2)",
           paddingY: "20px",
+          paddingX: { xs: "20px", md: "0" }, // Add padding on mobile
         }}
       >
         {/* Left: Currently Text Section */}
         <Box
           sx={{
-            flex: 1, // Take up available space
-            paddingLeft: "20px",
+            flex: 1,
+            paddingLeft: { md: "20px" }, // Padding left only on larger screens
+            textAlign: 'left', // Always left-aligned
+            marginBottom: { xs: '20px', md: '0' }, // Add margin bottom on mobile
           }}
         >
           <Typography
             variant="h6"
             sx={{
-              fontSize: "45px",
+              fontSize: { xs: "30px", md: "45px" }, // Adjust font size for mobile
               color: "#444",
             }}
           >
@@ -107,7 +120,7 @@ export default function AboutMe() {
           <Typography
             variant="body1"
             sx={{
-              fontSize: "28px",
+              fontSize: { xs: "22px", md: "28px" }, // Adjust font size for mobile
               marginTop: "30px",
               color: "#888",
             }}
@@ -120,7 +133,7 @@ export default function AboutMe() {
           <Typography
             variant="body1"
             sx={{
-              fontSize: "28px",
+              fontSize: { xs: "22px", md: "28px" }, // Adjust font size for mobile
               color: "#888",
             }}
           >
@@ -132,7 +145,7 @@ export default function AboutMe() {
           <Typography
             variant="body1"
             sx={{
-              fontSize: "28px",
+              fontSize: { xs: "22px", md: "28px" }, // Adjust font size for mobile
               color: "#888",
             }}
           >
@@ -143,12 +156,12 @@ export default function AboutMe() {
         {/* Right: Me Image Section */}
         <Card
           sx={{
-            width: '470px', // Adjust size of the image
+            width: { xs: '100%', md: '470px' }, // Full width on mobile, fixed width on larger screens
             height: 'auto',
             overflow: 'hidden',
             backgroundColor: "transparent",
             boxShadow: "none",
-            paddingRight: "10px",
+            paddingRight: { md: "10px" }, // Padding only on larger screens
           }}
         >
           <CardMedia

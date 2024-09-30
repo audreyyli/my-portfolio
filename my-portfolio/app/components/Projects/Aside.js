@@ -7,14 +7,14 @@ const Aside = ({ image, blurImage, title, company, description, link, flip, widt
     <Card 
       sx={{ 
         display: 'flex', 
-        flexDirection: flip ? 'row-reverse' : 'row', // Conditionally flip layout
+        flexDirection: { xs: 'column', md: flip ? 'row-reverse' : 'row' }, // Stack vertically on mobile, row on desktop
         alignItems: 'center', 
         justifyContent: 'flex-start',
         boxShadow: 'none',
         border: 'none',
         marginTop: marginTop,
         position: 'relative', // Relative position for absolute children
-        overflow: 'hidden' // Ensure nothing exceeds card boundaries
+        overflow: 'hidden', // Ensure nothing exceeds card boundaries
       }}
     >
       <Link href={link} passHref>
@@ -22,8 +22,8 @@ const Aside = ({ image, blurImage, title, company, description, link, flip, widt
           component="a" // Make the entire Box clickable as a link
           sx={{ 
             position: 'relative', 
-            width: width, // Use width from props
-            height: height, // Use height from props
+            width: { xs: '100%', md: width }, // Full width on mobile
+            height: { xs: 'auto', md: height }, // Auto height for mobile, fixed height for larger screens
             '&:hover .blurImage': { // Target the blur image on hover
               opacity: 1, // Show blur image
               transform: "scale(1.25)",
@@ -38,8 +38,8 @@ const Aside = ({ image, blurImage, title, company, description, link, flip, widt
           <Box 
             sx={{
               position: 'relative',
-              width: width,
-              height: height,
+              width: { xs: '100%', md: width }, // Full width for mobile, fixed for larger screens
+              height: { xs: 'auto', md: height }, // Auto height on mobile, fixed on larger screens
             }}
           >
             {/* Blur Image */}
@@ -51,7 +51,7 @@ const Aside = ({ image, blurImage, title, company, description, link, flip, widt
                 top: 0, // Align to the top
                 left: 0, // Align to the left
                 width: '100%',
-                height: '100%',
+                height: { xs: 'auto', md: '100%' }, // Adjust height for mobile and desktop
                 objectFit: 'cover',
                 filter: 'blur(8px)', // Apply blur effect
                 opacity: 0, // Initially hidden
@@ -67,11 +67,11 @@ const Aside = ({ image, blurImage, title, company, description, link, flip, widt
               component="img"
               className="mainImage"
               sx={{ 
-                position: 'absolute', // Same absolute positioning
+                position: 'relative', // Use relative for mobile so it adapts height better
                 top: 0,
                 left: 0,
-                width: width, // Set width from props
-                height: height, // Set height from props
+                width: '100%', // Full width for responsiveness
+                height: { xs: 'auto', md: '100%' }, // Full height for responsiveness, auto height on mobile
                 objectFit: 'cover', 
                 transition: "transform 0.3s ease-in-out, opacity 0.3s ease-in-out", // Smooth scale and fade
                 zIndex: 2 // On top of blur image

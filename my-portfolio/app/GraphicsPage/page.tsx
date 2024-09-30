@@ -1,7 +1,7 @@
 "use client";
 import Header from "../components/Header/Header";
 import PictureGrid from "../components/Pictures/PictureGrid";
-import { Typography, Box, Link } from "@mui/material";
+import { Typography, Box, Link, IconButton, Drawer } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Footer from "../components/Footer/Footer";
@@ -12,6 +12,15 @@ const theme = createTheme({
   typography: {
     fontFamily:
       '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
   },
 });
 
@@ -143,70 +152,35 @@ export default function GraphicsPage() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Header />
+
       <Box
         sx={{
           display: "flex",
-          position: "relative", // Ensure content and sidebar are relative to the page
+          flexDirection: { xs: "column", md: "row" }, // Stack vertically on mobile, side-by-side on larger screens
+          position: "relative", 
         }}
       >
-        {/* Sticky Sidebar - Positioned outside the main content area */}
+        {/* Sidebar for Desktop */}
         <Box
           sx={{
-            position: "fixed", // Sidebar remains fixed on the screen
-            top: "50%",
+            display: { xs: "none", md: "block" }, // Hide on mobile
+            position: "fixed", 
+            top: "50%", 
             transform: "translateY(-50%)",
-            left: "20px", // Positioned towards the left side of the screen
+            left: "20px", 
             padding: "20px",
             width: "200px",
             height: "fit-content",
           }}
         >
           <Box sx={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-            <Link
-              href="#wuksa"
-              sx={{
-                color: "#002366",
-                fontWeight: "bold",
-                textDecoration: "none",
-                transition: "color 0.3s ease", // Smooth transition effect
-                "&:hover": {
-                  color: "#888", // Change color on hover
-                  textDecoration: "underline", // Optional underline on hover
-                },
-              }}
-            >
+            <Link href="#wuksa" sx={linkStyles}>
               WUKSA
             </Link>
-
-            <Link
-              href="#wai"
-              sx={{
-                color: "#002366",
-                fontWeight: "bold",
-                textDecoration: "none",
-                transition: "color 0.3s ease",
-                "&:hover": {
-                  color: "#888",
-                  textDecoration: "underline",
-                },
-              }}
-            >
+            <Link href="#wai" sx={linkStyles}>
               WAI
             </Link>
-
-            <Link
-              href="#grc"
-              sx={{
-                color: "#002366",
-                fontWeight: "bold",
-                textDecoration: "none",
-                transition: "color 0.3s ease",
-                "&:hover": {
-                  color: "#888",
-                  textDecoration: "underline",
-                },
-              }}
-            >
+            <Link href="#grc" sx={linkStyles}>
               GRC
             </Link>
           </Box>
@@ -216,14 +190,20 @@ export default function GraphicsPage() {
         <Box
           sx={{
             flexGrow: 1,
-            maxWidth: "1200px", // Max width for the content area
-            margin: "0 auto", // Center the content horizontally
-            padding: "20px",
+            maxWidth: "1200px", // Max width for content area
+            margin: "0 auto",
+            padding: { xs: "10px", sm: "20px" }, // Smaller padding for mobile
           }}
         >
           <Typography
             variant="h2"
-            sx={{ marginTop: "50px", fontWeight: "bold", textTransform: "none", color: "#444" }}
+            sx={{
+              marginTop: { xs: "30px", sm: "50px" },
+              fontWeight: "bold",
+              fontSize: { xs: "50px", sm: "60px" }, // Adjust font size for mobile
+              textTransform: "none",
+              color: "#444",
+            }}
           >
             Graphic Design Library
           </Typography>
@@ -232,6 +212,7 @@ export default function GraphicsPage() {
             sx={{
               textTransform: "none",
               color: "#888",
+              fontSize: { xs: "18px", sm: "20px" }, // Adjust font size for mobile
             }}
           >
             Designs made by Audrey throughout the years.
@@ -241,13 +222,19 @@ export default function GraphicsPage() {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            variants={fadeInUpVariant} // Use the animation variant
-            viewport={{ once: true }} // Only animate once when in view
+            variants={fadeInUpVariant}
+            viewport={{ once: true }}
           >
             <Box id="wuksa">
               <Typography
                 variant="h5"
-                sx={{ color: "#444", marginTop: "60px", marginBottom: "30px", fontWeight: "bold" }}
+                sx={{
+                  color: "#444",
+                  marginTop: { xs: "40px", sm: "60px" },
+                  marginBottom: "30px",
+                  fontWeight: "bold",
+                  fontSize: { xs: "22px", sm: "26px" }, // Adjust font size for mobile
+                }}
               >
                 Western University Korean Student Association
               </Typography>
@@ -265,7 +252,13 @@ export default function GraphicsPage() {
             <Box id="wai">
               <Typography
                 variant="h5"
-                sx={{ color: "#444", marginTop: "100px", marginBottom: "30px", fontWeight: "bold" }}
+                sx={{
+                  color: "#444",
+                  marginTop: { xs: "40px", sm: "100px" },
+                  marginBottom: "30px",
+                  fontWeight: "bold",
+                  fontSize: { xs: "22px", sm: "26px" }, // Adjust font size for mobile
+                }}
               >
                 Western Artificial Intelligence
               </Typography>
@@ -283,7 +276,13 @@ export default function GraphicsPage() {
             <Box id="grc">
               <Typography
                 variant="h5"
-                sx={{ color: "#444", marginTop: "100px", marginBottom: "30px", fontWeight: "bold" }}
+                sx={{
+                  color: "#444",
+                  marginTop: { xs: "40px", sm: "100px" },
+                  marginBottom: "30px",
+                  fontWeight: "bold",
+                  fontSize: { xs: "22px", sm: "26px" }, // Adjust font size for mobile
+                }}
               >
                 Global Research & Consulting
               </Typography>
@@ -307,3 +306,15 @@ export default function GraphicsPage() {
     </ThemeProvider>
   );
 }
+
+// Styles for links in the sidebar
+const linkStyles = {
+  color: "#002366",
+  fontWeight: "bold",
+  textDecoration: "none",
+  transition: "color 0.3s ease",
+  "&:hover": {
+    color: "#888",
+    textDecoration: "underline",
+  },
+};

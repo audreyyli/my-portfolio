@@ -8,11 +8,19 @@ import { motion } from "framer-motion";
 import React from "react";
 import Footer from "/Users/audreyli/Documents/GitHub/my_portfolio/my-portfolio/app/components/Footer/Footer.js";
 
-// Create a custom theme with Apple system fonts
 const theme = createTheme({
   typography: {
     fontFamily:
       '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
   },
 });
 
@@ -30,7 +38,7 @@ function MyApp({}) {
         sx={{
           maxWidth: "1200px",
           margin: "0 auto",
-          padding: "20px",
+          padding: { xs: "15px", sm: "20px" },
         }}
       >
         {/* Main section to take full viewport height */}
@@ -47,7 +55,12 @@ function MyApp({}) {
         >
           <Typography
             variant="h4"
-            sx={{ fontWeight: "bold", textTransform: "none", color: "#444" }}
+            sx={{ 
+              fontWeight: "bold", 
+              textTransform: "none", 
+              color: "#444",
+              fontSize: { xs: "30px", md: "40px" },
+            }}
           >
             👋 Hi there! I&apos;m Audrey Li!
           </Typography>
@@ -175,7 +188,7 @@ function MyApp({}) {
             <Typography
               variant="h1"
                 sx={{
-                  fontSize: "185px",
+                  fontSize: { xs: "130px", md: "185px" },
                   fontWeight: "bold",
                   textTransform: "none",
                   color: "#444",
@@ -188,7 +201,7 @@ function MyApp({}) {
               <Typography
                 variant="h1"
                 sx={{
-                  fontSize: "185px",
+                  fontSize: { xs: "130px", md: "185px" },
                   fontWeight: "bold",
                   textTransform: "none",
                   color: "#444",
@@ -202,7 +215,7 @@ function MyApp({}) {
             <Typography
               variant="h6"
               sx={{
-                fontSize: "20px",
+                fontSize: { xs: "18px", md: "20px" },
                 textTransform: "none",
                 color: "#666",
                 marginTop: "20px",
@@ -221,8 +234,9 @@ function MyApp({}) {
               textTransform: "none",
               color: "#444",
               fontWeight: "bold",
-              marginTop: "100px",
+              marginTop: { xs: "50px", sm: "70px", md: "100px" },
               textAlign: "center",
+              fontSize: { xs: "30px", sm: "40px", md: "50px" },
             }}
           >
             My Recent Works
@@ -243,9 +257,9 @@ function MyApp({}) {
               description="A streamlined quoting system enhancing estimation accuracy and user experience for scalable efficiency."
               link="/Construction"
               flip={false}
-              width="700px"
-              height="700px"
-              marginTop="80px"
+              width={{ xs: "100%", sm: "600px", md: "700px" }}
+              height={{ xs: "100%", sm: "600px", md: "700px" }}
+              marginTop={{ xs: "50px", sm: "80px" }}
             />
           </motion.div>
 
@@ -288,7 +302,7 @@ function MyApp({}) {
               marginTop="100px"
             />
           </motion.div>
-          <Box sx={{ marginTop: "120px",}}>
+          <Box sx={{ marginTop: { xs: "80px", sm: "120px" } }}>
             <Footer />
           </Box>
         </Box>

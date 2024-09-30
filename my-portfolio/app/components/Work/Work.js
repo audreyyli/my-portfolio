@@ -7,23 +7,22 @@ const Work = ({ image, blurImage, title, company, time, link, flip, width, heigh
     <Card 
       sx={{ 
         display: 'flex', 
-        flexDirection: flip ? 'row-reverse' : 'row', // Conditionally flip layout
+        flexDirection: { xs: 'column', md: flip ? 'row-reverse' : 'row' }, // Stack vertically on mobile, row on larger screens
         alignItems: 'center', 
         justifyContent: 'flex-start',
         boxShadow: 'none',
         border: 'none',
         marginTop: marginTop,
         position: 'relative', // Relative for positioning images
-        overflow: 'hidden' // Prevent images from overflowing outside the container
+        overflow: 'hidden', // Prevent images from overflowing outside the container
       }}
     >
       <Link href={link} passHref>
         <Box 
-          component="a"
           sx={{ 
             position: 'relative', 
-            width: width, 
-            height: height, 
+            width: { xs: '100%', md: width }, // Full width on mobile, fixed width on larger screens
+            height: { xs: 'auto', md: height }, // Auto height on mobile
             '&:hover .blurImage': { // Reveal blur image on hover
               opacity: 1,
               transform: "scale(1.25)", // Zoom the blurred image on hover
@@ -38,8 +37,8 @@ const Work = ({ image, blurImage, title, company, time, link, flip, width, heigh
           <Box 
             sx={{
               position: 'relative',
-              width: width,
-              height: height,
+              width: '100%', 
+              height: { xs: 'auto', md: height }, // Auto height on mobile
             }}
           >
             {/* Blur Image */}
@@ -67,12 +66,12 @@ const Work = ({ image, blurImage, title, company, time, link, flip, width, heigh
               component="img"
               className="mainImage"
               sx={{ 
-                position: 'absolute',
+                position: 'relative',
                 top: 0,
                 left: 0,
-                width: width, 
-                height: height, 
-                objectFit: 'cover', 
+                width: '100%', 
+                height: { xs: 'auto', md: '100%' }, // Auto height on mobile, fixed height on larger screens
+                objectFit: 'cover', // Ensure image covers the box
                 transition: "transform 0.3s ease-in-out, opacity 0.3s ease-in-out", 
                 zIndex: 2 // On top of blur image
               }}
@@ -83,7 +82,16 @@ const Work = ({ image, blurImage, title, company, time, link, flip, width, heigh
         </Box>
       </Link>
 
-      <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '16px', textAlign: 'left' }}>
+      <Box 
+        sx={{ 
+          display: 'flex', 
+          flexDirection: 'column', 
+          justifyContent: 'center', 
+          padding: '16px', 
+          textAlign: 'left', 
+          width: { xs: '100%', md: 'auto' } 
+        }}
+      >
         <CardContent>
           {/* Title */}
           <Typography variant="h4" component="div" sx={{ marginBottom: '8px', lineHeight: "30px", color: "#444" }}>
@@ -107,19 +115,20 @@ const Work = ({ image, blurImage, title, company, time, link, flip, width, heigh
                 key={index}
                 label={skill}
                 sx={{
-                    border: '1px solid rgba(0, 35, 102, 0.5)',
-                    color: 'rgba(0, 35, 102, 0.7)',
-                    fontWeight: 'bold',
-                    backgroundColor: "transparent" }}
+                  border: '1px solid rgba(0, 35, 102, 0.5)',
+                  color: 'rgba(0, 35, 102, 0.7)',
+                  fontWeight: 'bold',
+                  backgroundColor: "transparent" 
+                }}
               />
             ))}
           </Box>
 
           {/* Link Button */}
           <Link href={link} passHref>
-          <Button 
-            variant="contained"
-            sx={{ 
+            <Button 
+              variant="contained"
+              sx={{ 
                 fontSize: "16px", 
                 textTransform: 'none', 
                 backgroundColor: "#002366", 
@@ -129,33 +138,33 @@ const Work = ({ image, blurImage, title, company, time, link, flip, width, heigh
                 transition: 'padding 0.3s ease', // Smooth padding transition
                 boxShadow: "none",
                 '&:hover': {
-                backgroundColor: 'rgba(0, 35, 102, 0.7)', // White background on hover
-                color: '#fff',
-                paddingRight: '50px', // Increase padding to make space for arrow
-                boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.2)", // Lighter shadow on hover
-                '& .arrow': { 
+                  backgroundColor: 'rgba(0, 35, 102, 0.7)', // White background on hover
+                  color: '#fff',
+                  paddingRight: '50px', // Increase padding to make space for arrow
+                  boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.2)", // Lighter shadow on hover
+                  '& .arrow': { 
                     opacity: 1, // Make arrow visible
                     transform: 'translateX(1px)', // Move the arrow to the right
                     transition: 'transform 0.3s ease-in-out', // Smooth transition for movement
+                  },
                 },
-                },
-            }}
+              }}
             >
-            View Experience
-            <Box
+              View Experience
+              <Box
                 component="span"
                 className="arrow"
                 sx={{
-                opacity: 0, // Initially hidden
-                position: "absolute",
-                right: 16, // Position on the right side inside the button
-                display: "inline-block",
-                paddingRight: "10px",
-                transition: 'opacity 0.3s ease, transform 0.3s ease', // Smooth transition for appearance and movement
+                  opacity: 0, // Initially hidden
+                  position: "absolute",
+                  right: 16, // Position on the right side inside the button
+                  display: "inline-block",
+                  paddingRight: "10px",
+                  transition: 'opacity 0.3s ease, transform 0.3s ease', // Smooth transition for appearance and movement
                 }}
-            >
+              >
                 »
-            </Box>
+              </Box>
             </Button>
           </Link>
         </CardContent>

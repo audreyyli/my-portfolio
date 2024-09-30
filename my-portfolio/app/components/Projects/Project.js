@@ -8,8 +8,9 @@ const Projects = ({ image, title, company, time, link, skills }) => {
       container
       spacing={1}
       sx={{
+        paddingLeft: "10px",
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(440px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', // Adjust for smaller screens
         gap: '15px',
         justifyContent: 'left',
       }}
@@ -18,8 +19,8 @@ const Projects = ({ image, title, company, time, link, skills }) => {
       <Link href={link} passHref>
         <Card
           sx={{
-            position: 'relative', // Enables absolute positioning for the image
-            width: '565px',
+            position: 'relative', 
+            width: { xs: '100%', md: '565px' }, // Full width on mobile, fixed width on larger screens
             height: 'auto',
             backgroundColor: '#fff',
             borderRadius: '15px',
@@ -33,7 +34,6 @@ const Projects = ({ image, title, company, time, link, skills }) => {
             '&:hover': {
               transform: 'translateY(-5px)', // Move the card upwards without affecting layout
               boxShadow: '0 5px 20px rgba(0, 35, 102, 0.2)', // Add a subtle shadow on hover
-              //border: "2px solid rgba(0, 35, 102, 0.7)", // Apply border on hover
             },
             '&:hover .project-image': {
               transform: 'scale(1.04)', // Scale image when the card is hovered
@@ -45,13 +45,13 @@ const Projects = ({ image, title, company, time, link, skills }) => {
             sx={{
               position: 'relative',
               width: '100%',
-              height: '300px', // Fixed height for the image container
+              height: { xs: '200px', md: '300px' }, // Smaller height for mobile
               overflow: 'hidden', // Ensure the image doesn't overflow
             }}
           >
             <CardMedia
               component="img"
-              className="project-image" // Add a class to the image
+              className="project-image"
               src={image}
               alt={title}
               sx={{
@@ -61,7 +61,7 @@ const Projects = ({ image, title, company, time, link, skills }) => {
                 width: '100%',
                 height: '100%',
                 objectFit: 'cover',
-                transition: "transform 0.3s ease-in-out", // Apply scaling smoothly
+                transition: 'transform 0.3s ease-in-out', // Apply scaling smoothly
                 willChange: 'transform', // Improve performance during hover
               }}
             />
@@ -72,7 +72,7 @@ const Projects = ({ image, title, company, time, link, skills }) => {
             sx={{ 
               width: '100%', 
               textAlign: 'left', 
-              padding: '20px', 
+              padding: { xs: '15px', md: '20px' }, // Adjust padding for smaller screens
               position: 'relative', 
               zIndex: 2,
             }}
@@ -81,7 +81,7 @@ const Projects = ({ image, title, company, time, link, skills }) => {
             <Typography
               variant="h5"
               component="p"
-              sx={{ fontWeight: 600, marginBottom: '5px', color: "#444" }}
+              sx={{ fontWeight: 600, marginBottom: '5px', color: "#444", fontSize: { xs: '18px', md: '22px' } }} // Adjust font size for mobile
             >
               {title}
             </Typography>
@@ -94,6 +94,7 @@ const Projects = ({ image, title, company, time, link, skills }) => {
                 fontStyle: 'italic',
                 fontWeight: 500,
                 color: '#888',
+                fontSize: { xs: '14px', md: '16px' }, // Adjust font size for mobile
               }}
             >
               {company}
@@ -102,7 +103,7 @@ const Projects = ({ image, title, company, time, link, skills }) => {
             {/* Time Period */}
             <Typography
               variant="body2"
-              sx={{ marginBottom: '12px', color: "#888" }}
+              sx={{ marginBottom: '12px', color: "#888", fontSize: { xs: '14px', md: '16px' } }} // Adjust font size for mobile
             >
               {time}
             </Typography>
@@ -118,6 +119,7 @@ const Projects = ({ image, title, company, time, link, skills }) => {
                     color: 'rgba(0, 35, 102, 0.7)',
                     fontWeight: 'bold',
                     backgroundColor: 'transparent',
+                    fontSize: { xs: '12px', md: '14px' }, // Adjust font size for skills
                   }}
                 />
               ))}
