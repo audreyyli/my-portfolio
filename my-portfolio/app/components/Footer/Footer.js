@@ -9,6 +9,7 @@ const Footer = () => {
   return (
     <Box 
       sx={{ 
+        maxWidth: "1200px",
         width: "100%", // Full width of the screen
         display: "flex", 
         alignItems: "center", 
@@ -18,7 +19,7 @@ const Footer = () => {
       }}
     >
       {/* Text */}
-      <Typography variant="body1" sx={{ color: "#888" }}>
+      <Typography variant="body1" sx={{ fontSize: "20px", color: "#888" }}>
         Made with ❤️, by Audrey
       </Typography>
 
@@ -36,7 +37,7 @@ const Footer = () => {
             },
           }}
         >
-          <LinkedInIcon sx={{ color: "#888" }} />
+          <LinkedInIcon sx={{ width: "35px", height: "auto", color: "#888" }} />
         </IconButton>
 
         <IconButton
@@ -51,7 +52,7 @@ const Footer = () => {
             },
           }}
         >
-          <GitHubIcon sx={{ color: "#888" }} />
+          <GitHubIcon sx={{ width: "35px", height: "auto", color: "#888" }} />
         </IconButton>
 
         <IconButton
@@ -65,7 +66,7 @@ const Footer = () => {
             },
           }}
         >
-          <MailIcon sx={{ color: "#888" }} />
+          <MailIcon sx={{ width: "35px", height: "auto", color: "#888" }} />
         </IconButton>
       </Box>
     </Box>

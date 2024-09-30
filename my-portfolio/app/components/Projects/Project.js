@@ -10,7 +10,7 @@ const Projects = ({ image, title, company, time, link, skills }) => {
       sx={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fill, minmax(440px, 1fr))',
-        gap: '25px',
+        gap: '15px',
         justifyContent: 'left',
       }}
     >
@@ -18,40 +18,65 @@ const Projects = ({ image, title, company, time, link, skills }) => {
       <Link href={link} passHref>
         <Card
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'flex-start',
-            width: '470px',
+            position: 'relative', // Enables absolute positioning for the image
+            width: '565px',
             height: 'auto',
-            backgroundColor: '#fff', // Lighter background like in the Graphics card
-            borderRadius: '15px', // Rounded corners for the card itself
-            boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)', // Soft shadow effect
+            backgroundColor: '#fff',
+            borderRadius: '15px',
+            boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
             padding: '0px',
-            overflow: 'hidden', // Ensures the image doesn't overflow out of the card
-            marginTop: "40px",
-            cursor: 'pointer', // Makes it clear the entire card is clickable
+            overflow: 'hidden',
+            marginTop: '10px',
+            cursor: 'pointer',
             textDecoration: 'none',
+            transition: 'transform 0.3s ease, box-shadow 0.3s ease', // Smooth hover effect
             '&:hover': {
-              boxShadow: '0 0 15px rgba(0, 0, 0, 0.2)', // Slightly bigger shadow on hover
+              transform: 'translateY(-5px)', // Move the card upwards without affecting layout
+              boxShadow: '0 5px 20px rgba(0, 35, 102, 0.2)', // Add a subtle shadow on hover
+              //border: "2px solid rgba(0, 35, 102, 0.7)", // Apply border on hover
+            },
+            '&:hover .project-image': {
+              transform: 'scale(1.04)', // Scale image when the card is hovered
             },
           }}
         >
           {/* Project Image */}
-          <CardMedia
-            component="img"
-            src={image}
-            alt={title}
+          <Box
             sx={{
-              width: '100%', // Take up the full width of the card
-              height: '100%', // Take up the entire top part of the card
-              objectFit: 'cover', // Cover the entire area
-              marginBottom: '0px', // No margin
-              borderRadius: '0px', // Remove the border radius for the image
+              position: 'relative',
+              width: '100%',
+              height: '300px', // Fixed height for the image container
+              overflow: 'hidden', // Ensure the image doesn't overflow
             }}
-          />
+          >
+            <CardMedia
+              component="img"
+              className="project-image" // Add a class to the image
+              src={image}
+              alt={title}
+              sx={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                transition: "transform 0.3s ease-in-out", // Apply scaling smoothly
+                willChange: 'transform', // Improve performance during hover
+              }}
+            />
+          </Box>
 
-          <Box sx={{ width: '100%', textAlign: 'left', padding: '20px' }}>
+          {/* Content Box */}
+          <Box 
+            sx={{ 
+              width: '100%', 
+              textAlign: 'left', 
+              padding: '20px', 
+              position: 'relative', 
+              zIndex: 2,
+            }}
+          >
             {/* Project Title */}
             <Typography
               variant="h5"

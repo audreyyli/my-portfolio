@@ -22,7 +22,7 @@ const PictureGrid = ({ pictures }) => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'flex-start',
-            width: '470px',
+            width: '570px',
             height: 'auto',
             backgroundColor: '#F8F8F8',
             borderRadius: '25px',

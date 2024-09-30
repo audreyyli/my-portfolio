@@ -5,6 +5,7 @@ import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import Work from "../components/Work/Work";
 import { Typography, Box } from "@mui/material";
+import { motion } from "framer-motion"; // Import Framer Motion for animations
 import React from "react";
 
 // Create a custom theme with Apple system fonts
@@ -15,6 +16,12 @@ const theme = createTheme({
   },
 });
 
+// Animation variants for fading in and rising up
+const fadeInUpVariant = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 1 } },
+};
+
 function MyApp({}) {
   return (
     <ThemeProvider theme={theme}>
@@ -23,57 +30,75 @@ function MyApp({}) {
       {/* Page Wrapper with max-width 1000px and centered content */}
       <Box
         sx={{
-          maxWidth: "1000px", // Restrict the page to 1000px width
+          maxWidth: "1200px",
           margin: "0 auto", // Center the content horizontally
           padding: "20px", // Optional padding
         }}
       >
+        <Typography
+          variant="h2"
+          sx={{ marginTop: "50px", fontWeight: "bold", textTransform: "none", color: "#444" }}
+        >
+          Work Experience
+        </Typography>
+        <Typography
+          variant="h6"
+          sx={{
+            textTransform: "none",
+            color: "#888",
+          }}
+        >
+          Work experience made by Audrey throughout the years.
+        </Typography>
 
-            <Typography
-                variant="h2"
-                sx={{ marginTop: "50px", fontWeight: "bold", textTransform: "none", color: "#444" }}
-            >
-                Work Experience
-            </Typography>
-            <Typography
-                variant="h6"
-                sx={{
-                textTransform: "none",
-                color: "#888",
-                }}
-            >
-                Work experience made by Audrey throughout the years.
-            </Typography>
-
+        {/* First Work Experience */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={fadeInUpVariant} // Use the animation variant
+          viewport={{ once: true }} // Only animate once when in view
+        >
           <Work
-          image="/images/TSMFeature.png"
-          title="Junior Developer"
-          company="Two Small Men with Big Hearts"
-          link="/project1"
-          time="June 2023 - Present"
-          skills={["Web development", "SEO", "Figma", "React", "Next.js"]}
-          flip={false}
-          width="570px"
-          height="350px"
-          marginTop= "80px"
+            image="/images/TSM.png"
+            blurImage="/images/TSMBlur.png"
+            title="Junior Developer"
+            company="Two Small Men with Big Hearts"
+            link="/Construction"
+            time="June 2023 - Present"
+            skills={["Web development", "SEO", "Figma", "React", "Next.js"]}
+            flip={false}
+            width="550px"
+            height="550px"
+            marginTop="80px"
           />
+        </motion.div>
 
+        {/* Second Work Experience */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={fadeInUpVariant}
+          viewport={{ once: true }}
+        >
           <Work
-          image="/images/bubbliFeature.png"
-          title="Owner/Founder"
-          company="bubbli"
-          link="/project1"
-          time="May 2022 - Present"
-          skills={["Web development", "SEO", "Figma", "React", "Next.js", "Social Media Management"]}
-          flip={true}
-          width="570px"
-          height="350px"
-          marginTop="120px"
+            image="/images/bubbliFeature.png"
+            blurImage="/images/bubbliBlur.png"
+            title="Owner/Founder"
+            company="bubbli"
+            link="/Construction"
+            time="May 2022 - Present"
+            skills={["Web development", "SEO", "Figma", "React", "Next.js", "Social Media Management"]}
+            flip={true}
+            width="550px"
+            height="550px"
+            marginTop="120px"
           />
-          <Box>
+        </motion.div>
+
+        <Box sx={{ marginTop: "120px",}}>
             <Footer />
         </Box>
-        </Box>
+      </Box>
     </ThemeProvider>
   );
 }

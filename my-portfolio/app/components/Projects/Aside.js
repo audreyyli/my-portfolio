@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Typography, Button, Card, CardMedia, CardContent } from '@mui/material';
 import Link from 'next/link';
 
-const Aside = ({ image, title, company, description, link, flip, width, height, marginTop }) => {
+const Aside = ({ image, blurImage, title, company, description, link, flip, width, height, marginTop }) => {
   return (
     <Card 
       sx={{ 
@@ -12,30 +12,86 @@ const Aside = ({ image, title, company, description, link, flip, width, height, 
         justifyContent: 'flex-start',
         boxShadow: 'none',
         border: 'none',
-        marginTop: marginTop
+        marginTop: marginTop,
+        position: 'relative', // Relative position for absolute children
+        overflow: 'hidden' // Ensure nothing exceeds card boundaries
       }}
     >
-      <CardMedia
-        component="img"
-        sx={{ 
-          width: width, 
-          height: height, 
-          objectFit: 'cover', 
-          margin: '0 auto'
-        }}
-        image={image}
-        alt={title}
-      />
+      <Link href={link} passHref>
+        <Box 
+          component="a" // Make the entire Box clickable as a link
+          sx={{ 
+            position: 'relative', 
+            width: width, // Use width from props
+            height: height, // Use height from props
+            '&:hover .blurImage': { // Target the blur image on hover
+              opacity: 1, // Show blur image
+              transform: "scale(1.25)",
+            },
+            '&:hover .mainImage': { // Target the main image on hover
+              transform: "scale(1.04)", // Slight scale effect
+            },
+            textDecoration: 'none' // Remove underline from link
+          }}
+        >
+          {/* Container for both images */}
+          <Box 
+            sx={{
+              position: 'relative',
+              width: width,
+              height: height,
+            }}
+          >
+            {/* Blur Image */}
+            <CardMedia
+              component="img"
+              className="blurImage"
+              sx={{ 
+                position: 'absolute', // Make it absolutely positioned
+                top: 0, // Align to the top
+                left: 0, // Align to the left
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                filter: 'blur(8px)', // Apply blur effect
+                opacity: 0, // Initially hidden
+                transition: 'opacity 0.3s ease-in-out', // Smooth transition for hover
+                zIndex: 1 // Behind the main image
+              }}
+              image={blurImage}
+              alt="Blurred Background"
+            />
+
+            {/* Main Image */}
+            <CardMedia
+              component="img"
+              className="mainImage"
+              sx={{ 
+                position: 'absolute', // Same absolute positioning
+                top: 0,
+                left: 0,
+                width: width, // Set width from props
+                height: height, // Set height from props
+                objectFit: 'cover', 
+                transition: "transform 0.3s ease-in-out, opacity 0.3s ease-in-out", // Smooth scale and fade
+                zIndex: 2 // On top of blur image
+              }}
+              image={image}
+              alt={title}
+            />
+          </Box>
+        </Box>
+      </Link>
 
       <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '16px', textAlign: 'left' }}>
         <CardContent>
-          <Typography variant="h4" component="div" sx={{ marginBottom: '8px', lineHeight: "30px", color: "#444" }}>
+          <Typography variant="h3" component="div" sx={{ marginBottom: '15px', lineHeight: "45px", color: "#444" }}>
             {title}
           </Typography>
-          <Typography variant="h6" component="div" sx={{ fontSize: "20px", marginBottom: '8px', color: "#666" }}>
+          <Typography variant="h4" component="div" sx={{ fontSize: "20px", marginBottom: '10px', color: "#666" }}>
             {company}
           </Typography>
-          <Typography variant="body2" sx={{ fontSize: "16px", marginBottom: '12px', color: "#888" }}>
+          <Typography variant="body1" sx={{ fontSize: "16px", marginBottom: '12px', color: "#888" }}>
             {description}
           </Typography>
 

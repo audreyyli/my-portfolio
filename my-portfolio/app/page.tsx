@@ -4,6 +4,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Header from "/Users/audreyli/Documents/GitHub/my_portfolio/my-portfolio/app/components/Header/Header.js";
 import Aside from "/Users/audreyli/Documents/GitHub/my_portfolio/my-portfolio/app/components/Projects/Aside.js";
 import { Typography, Box } from "@mui/material";
+import { motion } from "framer-motion";
 import React from "react";
 import Footer from "/Users/audreyli/Documents/GitHub/my_portfolio/my-portfolio/app/components/Footer/Footer.js";
 
@@ -15,27 +16,35 @@ const theme = createTheme({
   },
 });
 
+const fadeInUpVariant = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 1 } },
+};
+
 function MyApp({}) {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Header />
-      {/* Page Wrapper with max-width 1000px and centered content */}
       <Box
         sx={{
-          maxWidth: "1000px", // Restrict the page to 1000px width
-          margin: "0 auto", // Center the content horizontally
-          padding: "20px", // Optional padding
+          maxWidth: "1200px",
+          margin: "0 auto",
+          padding: "20px",
         }}
       >
+        {/* Main section to take full viewport height */}
         <Box
           sx={{
-            textAlign: "left",
-            marginTop: "40px",
-            padding: "20px 0",
+            height: "100vh",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "start-left",
+            textAlign: "start-left",
+            marginTop: "-55px",
           }}
         >
-          {/* Introduction Text */}
           <Typography
             variant="h4"
             sx={{ fontWeight: "bold", textTransform: "none", color: "#444" }}
@@ -43,52 +52,87 @@ function MyApp({}) {
             👋 Hi there! I&apos;m Audrey Li!
           </Typography>
 
-          {/* Wrapping Simple and Bubbly in a Hoverable Container */}
           <Box
             sx={{
               display: "inline-block",
               position: "relative",
               "&:hover .bubble": {
-                opacity: 1, // Show bubbles on hover
-                animationPlayState: "running", // Start animation on hover
+                opacity: 1,
+                animationPlayState: "running",
               },
             }}
           >
-            {/* Bubble Elements */}
             <Box
               className="bubble"
               sx={{
                 position: "absolute",
-                bottom: "40px",
-                left: "68%", // Positioned to the right
+                bottom: "80px",
+                left: "50%",
                 width: "100px",
                 height: "100px",
-                background: "radial-gradient(circle at 30% 30%, rgba(115, 194, 251, 0.5), rgba(0, 35, 102, 0.3))", // Transparent gradient
+                background:
+                  "radial-gradient(circle at 30% 30%, rgba(115, 194, 251, 0.5), rgba(0, 35, 102, 0.3))",
                 borderRadius: "50%",
                 animation: "bubble1 3s infinite ease-in-out",
-                animationPlayState: "paused", // Animation paused by default
+                animationPlayState: "paused",
                 boxShadow:
-                  "10px 10px 30px rgba(0, 0, 0, 0.15), -10px -10px 20px rgba(255, 255, 255, 0.2)", // Softer 3D box shadow
+                  "10px 10px 30px rgba(0, 0, 0, 0.15), -10px -10px 20px rgba(255, 255, 255, 0.2)",
                 transform: "translateX(-50%)",
-                opacity: 0, // Hidden by default
+                opacity: 0,
               }}
             />
             <Box
               className="bubble"
               sx={{
                 position: "absolute",
-                bottom: "-40px",
-                left: "67%", // Positioned to the right
+                bottom: "0px",
+                left: "57%",
                 width: "150px",
                 height: "150px",
-                background: "radial-gradient(circle at 30% 30%, rgba(21, 96, 189, 0.5), rgba(0, 35, 102, 0.3))", // Transparent gradient
+                background: "radial-gradient(circle at 30% 30%, rgba(21, 96, 189, 0.5), rgba(0, 35, 102, 0.3))",
                 borderRadius: "50%",
                 animation: "bubble2 4s infinite ease-in-out",
-                animationPlayState: "paused", // Animation paused by default
+                animationPlayState: "paused",
                 boxShadow:
-                  "15px 15px 40px rgba(0, 0, 0, 0.15), -15px -15px 25px rgba(255, 255, 255, 0.2)", // Softer 3D box shadow
+                  "15px 15px 40px rgba(0, 0, 0, 0.15), -15px -15px 25px rgba(255, 255, 255, 0.2)",
                 transform: "translateX(-50%)",
-                opacity: 0, // Hidden by default
+                opacity: 0,
+              }}
+            />
+            <Box
+              className="bubble"
+              sx={{
+                position: "absolute",
+                bottom: "20px",
+                left: "65%",
+                width: "120px",
+                height: "120px",
+                background: "radial-gradient(circle at 30% 30%, rgba(115, 194, 251, 0.5), rgba(15, 82, 186, 0.3))",
+                borderRadius: "50%",
+                animation: "bubble3 2.5s infinite ease-in-out",
+                animationPlayState: "paused",
+                boxShadow:
+                  "12px 12px 35px rgba(0, 0, 0, 0.15), -12px -12px 20px rgba(255, 255, 255, 0.2)",
+                transform: "translateX(-50%)",
+                opacity: 0,
+              }}
+            />
+            <Box
+              className="bubble"
+              sx={{
+                position: "absolute",
+                bottom: "-10px",
+                left: "55%",
+                width: "80px",
+                height: "80px",
+                background: "radial-gradient(circle at 30% 30%, rgba(21, 96, 189, 0.5), rgba(15, 82, 186, 0.3))",
+                borderRadius: "50%",
+                animation: "bubble4 3.5s infinite ease-in-out",
+                animationPlayState: "paused",
+                boxShadow:
+                  "8px 8px 25px rgba(0, 0, 0, 0.15), -8px -8px 15px rgba(255, 255, 255, 0.2)",
+                transform: "translateX(-50%)",
+                opacity: 0,
               }}
             />
             <Box
@@ -96,170 +140,158 @@ function MyApp({}) {
               sx={{
                 position: "absolute",
                 bottom: "-20px",
-                left: "80%", // Positioned to the right
-                width: "120px",
-                height: "120px",
-                background: "radial-gradient(circle at 30% 30%, rgba(115, 194, 251, 0.5), rgba(15, 82, 186, 0.3))", // Transparent gradient
-                borderRadius: "50%",
-                animation: "bubble3 2.5s infinite ease-in-out",
-                animationPlayState: "paused", // Animation paused by default
-                boxShadow:
-                  "12px 12px 35px rgba(0, 0, 0, 0.15), -12px -12px 20px rgba(255, 255, 255, 0.2)", // Softer 3D box shadow
-                transform: "translateX(-50%)",
-                opacity: 0, // Hidden by default
-              }}
-            />
-            <Box
-              className="bubble"
-              sx={{
-                position: "absolute",
-                bottom: "-50px",
-                left: "65%", // Positioned to the right
-                width: "80px",
-                height: "80px",
-                background: "radial-gradient(circle at 30% 30%, rgba(21, 96, 189, 0.5), rgba(15, 82, 186, 0.3))", // Transparent gradient
-                borderRadius: "50%",
-                animation: "bubble4 3.5s infinite ease-in-out",
-                animationPlayState: "paused", // Animation paused by default
-                boxShadow:
-                  "8px 8px 25px rgba(0, 0, 0, 0.15), -8px -8px 15px rgba(255, 255, 255, 0.2)", // Softer 3D box shadow
-                transform: "translateX(-50%)",
-                opacity: 0, // Hidden by default
-              }}
-            />
-            {/* Two More Bubbles */}
-            <Box
-              className="bubble"
-              sx={{
-                position: "absolute",
-                bottom: "-60px",
-                left: "60%", // Positioned to the right
+                left: "50%",
                 width: "90px",
                 height: "90px",
-                background: "radial-gradient(circle at 30% 30%, rgba(115, 194, 251, 0.5), rgba(0, 35, 102, 0.3))", // Transparent gradient
+                background: "radial-gradient(circle at 30% 30%, rgba(115, 194, 251, 0.5), rgba(0, 35, 102, 0.3))",
                 borderRadius: "50%",
                 animation: "bubble5 3.8s infinite ease-in-out",
-                animationPlayState: "paused", // Animation paused by default
+                animationPlayState: "paused",
                 boxShadow:
-                  "9px 9px 30px rgba(0, 0, 0, 0.15), -9px -9px 18px rgba(255, 255, 255, 0.2)", // Softer 3D box shadow
+                  "9px 9px 30px rgba(0, 0, 0, 0.15), -9px -9px 18px rgba(255, 255, 255, 0.2)",
                 transform: "translateX(-50%)",
-                opacity: 0, // Hidden by default
+                opacity: 0,
               }}
             />
             <Box
               className="bubble"
               sx={{
                 position: "absolute",
-                bottom: "-70px",
-                left: "62%", // Positioned to the right
+                bottom: "-30px",
+                left: "52%",
                 width: "110px",
                 height: "110px",
-                background: "radial-gradient(circle at 30% 30%, rgba(21, 96, 189, 0.5), rgba(15, 82, 186, 0.3))", // Transparent gradient
+                background: "radial-gradient(circle at 30% 30%, rgba(21, 96, 189, 0.5), rgba(15, 82, 186, 0.3))",
                 borderRadius: "50%",
                 animation: "bubble6 3.2s infinite ease-in-out",
-                animationPlayState: "paused", // Animation paused by default
+                animationPlayState: "paused",
                 boxShadow:
-                  "10px 10px 35px rgba(0, 0, 0, 0.15), -10px -10px 20px rgba(255, 255, 255, 0.2)", // Softer 3D box shadow
+                  "10px 10px 35px rgba(0, 0, 0, 0.15), -10px -10px 20px rgba(255, 255, 255, 0.2)",
                 transform: "translateX(-50%)",
-                opacity: 0, // Hidden by default
+                opacity: 0,
               }}
             />
 
-            {/* Main Text */}
             <Typography
               variant="h1"
-              sx={{
-                fontSize: "185px",
-                fontWeight: "bold",
-                textTransform: "none",
-                color: "#444",
-                display: "inline-block",
-                marginRight: "10px",
-              }}
-            >
-              Simple,
-            </Typography>
+                sx={{
+                  fontSize: "185px",
+                  fontWeight: "bold",
+                  textTransform: "none",
+                  color: "#444",
+                  display: "inline-block",
+                  marginRight: "10px",
+                }}
+              >
+                Simple,
+              </Typography>
+              <Typography
+                variant="h1"
+                sx={{
+                  fontSize: "185px",
+                  fontWeight: "bold",
+                  textTransform: "none",
+                  color: "#444",
+                  display: "inline-block",
+                }}
+              >
+                Bubbly.
+              </Typography>
+            </Box>
+
             <Typography
-              variant="h1"
+              variant="h6"
               sx={{
-                fontSize: "185px",
-                fontWeight: "bold",
+                fontSize: "20px",
                 textTransform: "none",
-                color: "#444",
-                display: "inline-block",
+                color: "#666",
+                marginTop: "20px",
               }}
             >
-              Bubbly.
+              That&apos;s my approach to design. I&apos;m a product designer & developer
+              with a deep passion for creating user-centered solutions that bridge
+              aesthetics and functionality.
             </Typography>
           </Box>
 
-          <Typography
-            variant="h6"
-            sx={{
-              fontSize: "20px",
-              textTransform: "none",
-              color: "#666",
-              marginTop: "20px",
-            }}
-          >
-            That&apos;s my approach to design. I&apos;m a product designer & developer
-            with a deep passion for creating user-centered solutions that bridge
-            aesthetics and functionality.
-          </Typography>
+          {/* Other content */}
           <Typography
             variant="h4"
             sx={{
               textTransform: "none",
               color: "#444",
               fontWeight: "bold",
-              marginTop: "180px",
+              marginTop: "100px",
               textAlign: "center",
             }}
           >
             My Recent Works
           </Typography>
 
-          <Aside
-          image="/images/TSM.png"
-          title="Simplifying Your Moving Quote Journey"
-          company="Two Small Men with Big Hearts"
-          description="As a Junior Developer, I designed, developed, and implemented a new quoting system that streamlined the estimation process. The solution delivered fast and accurate quotes, significantly simplifying the quoting experience for users."
-          link="/project1"
-          flip={false}
-          width="620px"
-          height="310px"
-          marginTop= "80px"
-          />
+          {/* Use motion divs for your projects */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            variants={fadeInUpVariant}
+            viewport={{ once: true }}
+          >
+            <Aside
+              image="/images/TSM.png"
+              blurImage="/images/TSMBlur.png"
+              title="Simplifying Your Moving Quote Journey"
+              company="Two Small Men with Big Hearts"
+              description="A streamlined quoting system enhancing estimation accuracy and user experience for scalable efficiency."
+              link="/Construction"
+              flip={false}
+              width="700px"
+              height="700px"
+              marginTop="80px"
+            />
+          </motion.div>
 
-          <Aside
-          image="/images/EpiPlan.png"
-          title="A Companion for Dietary Restrictions"
-          company=""
-          description="Along with another designer, we designed EpiPlan, a mobile app to help individuals with dietary restrictions navigate food choices. Through user research, I identified key pain points and improved the app&apos;s functionality to address challenges like understanding food labels and finding suitable dining options."
-          link="/project1"
-          flip={true}
-          width="450px"
-          height="450px"
-          marginTop="200px"
-          />
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            variants={fadeInUpVariant}
+            viewport={{ once: true }}
+          >
+            <Aside
+              image="/images/EpiPlan.png"
+              blurImage="/images/epiPlanBlur.png"
+              title="A Companion for Dietary Restrictions"
+              company="EpiPlan"
+              description="A mobile app empowering individuals with dietary restrictions to easily navigate food choices and find suitable options through intuitive, research-driven solutions."
+              link="/Construction"
+              flip={true}
+              width="700px"
+              height="700px"
+              marginTop="100px"
+            />
+          </motion.div>
 
-          <Aside
-          image="/images/WUKSA.png"
-          title="Crafting a Bold New Identity"
-          company="WesternU Korean Student Association"
-          description="As the Head of Marketing, I initiated a redesign of the organization&apos;s brand aesthetic, ensuring a fresh and modern look that aligned with both the team&apos;s vision and our sponsors&apos; expectations. This involved collaborating closely with stakeholders to create a cohesive brand identity that resonated across all platforms."
-          link="/project1"
-          flip={false}
-          width="600px"
-          height="300px"
-          marginTop= "200px"
-          />
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            variants={fadeInUpVariant}
+            viewport={{ once: true }}
+          >
+            <Aside
+              image="/images/WUKSA.png"
+              blurImage="/images/wuksaBlur.png"
+              title="Crafting a Bold New Identity"
+              company="WesternU Korean Student Association"
+              description="Re-envisioning WUKSA's brand to bring a fresh, modern identity across all platforms."
+              link="/Construction"
+              flip={false}
+              width="550px"
+              height="550px"
+              marginTop="100px"
+            />
+          </motion.div>
+          <Box sx={{ marginTop: "120px",}}>
+            <Footer />
+          </Box>
         </Box>
-        <Box>
-          <Footer />
-        </Box>
-
-      </Box>
 
       {/* Keyframe animations */}
       <style jsx>{`

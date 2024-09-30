@@ -23,7 +23,7 @@ const CustomButton = styled(Button)(({ variantType }) => ({
     }),
     ...(variantType === 'header' && {
         padding: '8px 18px',  // Smaller padding for the header buttons
-        fontSize: '16px',      // Smaller font size for header buttons
+        fontSize: '20px',      // Smaller font size for header buttons
         backgroundColor: 'transparent',
         color: "black",
         fontWeight: "400",

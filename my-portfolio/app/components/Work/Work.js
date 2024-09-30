@@ -2,30 +2,86 @@ import React from 'react';
 import { Box, Typography, Button, Card, CardMedia, CardContent, Chip } from '@mui/material';
 import Link from 'next/link';
 
-const Work = ({ image, title, company, time, link, flip, width, height, marginTop, skills }) => {
+const Work = ({ image, blurImage, title, company, time, link, flip, width, height, marginTop, skills }) => {
   return (
     <Card 
       sx={{ 
         display: 'flex', 
-        flexDirection: flip ? 'row-reverse' : 'row',
+        flexDirection: flip ? 'row-reverse' : 'row', // Conditionally flip layout
         alignItems: 'center', 
         justifyContent: 'flex-start',
         boxShadow: 'none',
         border: 'none',
-        marginTop: marginTop
+        marginTop: marginTop,
+        position: 'relative', // Relative for positioning images
+        overflow: 'hidden' // Prevent images from overflowing outside the container
       }}
     >
-      <CardMedia
-        component="img"
-        sx={{ 
-          width: width, 
-          height: height, 
-          objectFit: 'cover', 
-          margin: '0 auto'
-        }}
-        image={image}
-        alt={title}
-      />
+      <Link href={link} passHref>
+        <Box 
+          component="a"
+          sx={{ 
+            position: 'relative', 
+            width: width, 
+            height: height, 
+            '&:hover .blurImage': { // Reveal blur image on hover
+              opacity: 1,
+              transform: "scale(1.25)", // Zoom the blurred image on hover
+            },
+            '&:hover .mainImage': { // Scale the main image on hover
+              transform: "scale(1.04)", 
+            },
+            textDecoration: 'none' // Remove default link styling
+          }}
+        >
+          {/* Container for both images */}
+          <Box 
+            sx={{
+              position: 'relative',
+              width: width,
+              height: height,
+            }}
+          >
+            {/* Blur Image */}
+            <CardMedia
+              component="img"
+              className="blurImage"
+              sx={{ 
+                position: 'absolute', 
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                filter: 'blur(8px)', 
+                opacity: 0, // Initially hidden
+                transition: 'opacity 0.3s ease-in-out', // Smooth transition
+                zIndex: 1 // Behind main image
+              }}
+              image={blurImage}
+              alt="Blurred Background"
+            />
+
+            {/* Main Image */}
+            <CardMedia
+              component="img"
+              className="mainImage"
+              sx={{ 
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: width, 
+                height: height, 
+                objectFit: 'cover', 
+                transition: "transform 0.3s ease-in-out, opacity 0.3s ease-in-out", 
+                zIndex: 2 // On top of blur image
+              }}
+              image={image}
+              alt={title}
+            />
+          </Box>
+        </Box>
+      </Link>
 
       <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '16px', textAlign: 'left' }}>
         <CardContent>
