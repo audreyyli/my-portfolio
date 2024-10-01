@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d app",
+    "deploy": "gh-pages -d out",
     "export": "next output"
   },
   "dependencies": {
@@ -32,6 +32,5 @@
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
-  },
-  "homepage": "https://my-portfolio-beta-orpin.vercel.app/"
+  }
 }
