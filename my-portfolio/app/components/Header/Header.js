@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { AppBar, Toolbar, Box, Button, IconButton, Menu, MenuItem } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import CustomButton from "/Users/audreyli/Documents/GitHub/my_portfolio/my-portfolio/app/MUI/Button.js"; // Import your custom button component
+import CustomButton from "../../MUI/Button.js"; // Import your custom button component
 
 export default function Header() {
   const [anchorEl, setAnchorEl] = useState(null); // State to manage menu

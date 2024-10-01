@@ -1,12 +1,12 @@
 "use client";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import Header from "/Users/audreyli/Documents/GitHub/my_portfolio/my-portfolio/app/components/Header/Header.js";
-import Aside from "/Users/audreyli/Documents/GitHub/my_portfolio/my-portfolio/app/components/Projects/Aside.js";
+import Header from "./components/Header/Header.js";
+import Aside from "./components/Projects/Aside.js";
 import { Typography, Box } from "@mui/material";
 import { motion } from "framer-motion";
 import React from "react";
-import Footer from "/Users/audreyli/Documents/GitHub/my_portfolio/my-portfolio/app/components/Footer/Footer.js";
+import Footer from "./components/Footer/Footer.js";
 
 const theme = createTheme({
   typography: {
