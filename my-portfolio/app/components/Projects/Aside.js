@@ -7,39 +7,39 @@ const Aside = ({ image, blurImage, title, company, description, link, flip, widt
     <Card 
       sx={{ 
         display: 'flex', 
-        flexDirection: { xs: 'column', md: flip ? 'row-reverse' : 'row' }, // Stack vertically on mobile, row on desktop
+        flexDirection: { xs: 'column', md: flip ? 'row-reverse' : 'row' }, 
         alignItems: 'center', 
         justifyContent: 'flex-start',
         boxShadow: 'none',
         border: 'none',
         marginTop: marginTop,
-        position: 'relative', // Relative position for absolute children
-        overflow: 'hidden', // Ensure nothing exceeds card boundaries
+        position: 'relative', 
+        overflow: 'hidden', 
       }}
     >
       <Link href={link} passHref>
         <Box 
-          component="a" // Make the entire Box clickable as a link
           sx={{ 
             position: 'relative', 
-            width: { xs: '100%', md: width }, // Full width on mobile
-            height: { xs: 'auto', md: height }, // Auto height for mobile, fixed height for larger screens
-            '&:hover .blurImage': { // Target the blur image on hover
-              opacity: 1, // Show blur image
+            width: { xs: '100%', md: width }, 
+            height: { xs: 'auto', md: height }, 
+            '&:hover .blurImage': { 
+              opacity: 1, 
               transform: "scale(1.25)",
             },
-            '&:hover .mainImage': { // Target the main image on hover
-              transform: "scale(1.04)", // Slight scale effect
+            '&:hover .mainImage': { 
+              transform: "scale(1.04)", 
             },
-            textDecoration: 'none' // Remove underline from link
+            textDecoration: 'none', // Keep link styling
+            cursor: 'pointer', // Makes it clear it's clickable
           }}
         >
           {/* Container for both images */}
           <Box 
             sx={{
               position: 'relative',
-              width: { xs: '100%', md: width }, // Full width for mobile, fixed for larger screens
-              height: { xs: 'auto', md: height }, // Auto height on mobile, fixed on larger screens
+              width: { xs: '100%', md: width },
+              height: { xs: 'auto', md: height }, 
             }}
           >
             {/* Blur Image */}
@@ -47,16 +47,16 @@ const Aside = ({ image, blurImage, title, company, description, link, flip, widt
               component="img"
               className="blurImage"
               sx={{ 
-                position: 'absolute', // Make it absolutely positioned
-                top: 0, // Align to the top
-                left: 0, // Align to the left
+                position: 'absolute',
+                top: 0,
+                left: 0,
                 width: '100%',
-                height: { xs: 'auto', md: '100%' }, // Adjust height for mobile and desktop
+                height: { xs: 'auto', md: '100%' }, 
                 objectFit: 'cover',
-                filter: 'blur(8px)', // Apply blur effect
-                opacity: 0, // Initially hidden
-                transition: 'opacity 0.3s ease-in-out', // Smooth transition for hover
-                zIndex: 1 // Behind the main image
+                filter: 'blur(8px)', 
+                opacity: 0, 
+                transition: 'opacity 0.3s ease-in-out', 
+                zIndex: 1 
               }}
               image={blurImage}
               alt="Blurred Background"
@@ -67,14 +67,14 @@ const Aside = ({ image, blurImage, title, company, description, link, flip, widt
               component="img"
               className="mainImage"
               sx={{ 
-                position: 'relative', // Use relative for mobile so it adapts height better
+                position: 'relative', 
                 top: 0,
                 left: 0,
-                width: '100%', // Full width for responsiveness
-                height: { xs: 'auto', md: '100%' }, // Full height for responsiveness, auto height on mobile
+                width: '100%',
+                height: { xs: 'auto', md: '100%' },
                 objectFit: 'cover', 
-                transition: "transform 0.3s ease-in-out, opacity 0.3s ease-in-out", // Smooth scale and fade
-                zIndex: 2 // On top of blur image
+                transition: "transform 0.3s ease-in-out, opacity 0.3s ease-in-out", 
+                zIndex: 2 
               }}
               image={image}
               alt={title}
@@ -106,16 +106,16 @@ const Aside = ({ image, blurImage, title, company, description, link, flip, widt
                 paddingX: "30px", 
                 position: "relative",
                 boxShadow: "none",
-                transition: 'padding 0.3s ease', // Smooth padding transition
+                transition: 'padding 0.3s ease', 
                 '&:hover': {
-                  backgroundColor: 'rgba(0, 35, 102, 0.7)', // Light grey background
+                  backgroundColor: 'rgba(0, 35, 102, 0.7)', 
                   color: '#fff',
                   boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.2)",
-                  paddingRight: '50px', // Increase padding to make space for arrow
+                  paddingRight: '50px', 
                   '& .arrow': { 
-                    opacity: 1, // Make arrow visible
-                    transform: 'translateX(1px)', // Move the arrow to the right
-                    transition: 'transform 0.3s ease-in-out', // Smooth transition for movement
+                    opacity: 1, 
+                    transform: 'translateX(1px)', 
+                    transition: 'transform 0.3s ease-in-out', 
                   },
                 },
               }}
@@ -125,12 +125,12 @@ const Aside = ({ image, blurImage, title, company, description, link, flip, widt
                 component="span"
                 className="arrow"
                 sx={{
-                  opacity: 0, // Initially hidden
+                  opacity: 0, 
                   position: "absolute",
-                  right: 16, // Position on the right side inside the button
+                  right: 16, 
                   display: "inline-block",
                   paddingRight: "10px",
-                  transition: 'opacity 0.3s ease, transform 0.3s ease', // Smooth transition for appearance and movement
+                  transition: 'opacity 0.3s ease, transform 0.3s ease',
                 }}
               >
                 »
