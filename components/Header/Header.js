@@ -1,33 +1,130 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { AppBar, Toolbar, Typography, Box, Button } from '@mui/material';
-import CustomButton from "/Users/audreyli/Documents/GitHub/my_portfolio/my-portfolio/app/MUI/Button.js"; // Import your custom button component
+import { AppBar, Toolbar, Box, Button, IconButton, Menu, MenuItem } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import CustomButton from "../../MUI/Button.js"; // Import your custom button component
 
 export default function Header() {
+  const [anchorEl, setAnchorEl] = useState(null); // State to manage menu
+  const [hovered, setHovered] = useState(false); // State to track hover over the logo
+
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <AppBar
       position="sticky"
       color="default"
-      sx={{ width: '1000px', margin: '0 auto', marginTop: "10px", backgroundColor: 'white', boxShadow: 'none' }}
+      sx={{ width: { xs: '100%', md: '1200px' }, margin: '0 auto', marginTop: "10px", backgroundColor: 'white', boxShadow: 'none' }}
     >
       <Toolbar sx={{ justifyContent: 'space-between' }}>
-        {/* Left: Name */}
-        <Typography
-          variant="h6"
-          component="div"
-          sx={{ flexGrow: 1, textTransform: 'none' }} // Ensure text is not capitalized
-        >
-          <Link href="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-            Audrey Li
-          </Link>
-        </Typography>
+        
+        {/* Left: Dropdown Menu for Mobile */}
+        <Box sx={{ display: { xs: 'flex', md: 'none' }, flexGrow: 1 }}>
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            fontSize="large"
+            onClick={handleMenuOpen}
+            sx={{ 
+              mr: 2,
+              fontSize: "40px", // Increase the size of the menu icon
+              color: '#000', // Default color
+              '&:hover': {
+                color: 'rgba(0, 35, 102, 0.7)', // Change color on hover
+                background: "none",
+              },
+            }}
+          >
+            <MenuIcon fontSize="inherit" />
+          </IconButton>
+          <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleMenuClose}
+            PaperProps={{
+              sx: {
+                backgroundColor: 'rgba(0, 35, 102, 0.7)', // Apply the hover color to the menu background
+                color: 'white', // Set text color to white for better visibility
+              }
+            }}
+          >
+            <MenuItem onClick={handleMenuClose}>
+              <Link href="/WorkPage" passHref>
+                Work
+              </Link>
+            </MenuItem>
+            <MenuItem onClick={handleMenuClose}>
+              <Link href="/ProjectsPage" passHref>
+                Projects
+              </Link>
+            </MenuItem>
+            <MenuItem onClick={handleMenuClose}>
+              <Link href="/GraphicsPage" passHref>
+                Graphics
+              </Link>
+            </MenuItem>
+            <MenuItem onClick={handleMenuClose}>
+              <Link href="/AboutMe" passHref>
+                About Me
+              </Link>
+            </MenuItem>
+          </Menu>
+        </Box>
 
-        {/* Center: Navigation buttons using CustomButton */}
-        <Box sx={{ display: 'flex', justifyContent: 'center', gap: '20px', flexGrow: 2 }}>
-          <Link href="/work" passHref>
+        {/* Center: Logo with hover effect */}
+        <Box
+          sx={{ flexGrow: { xs: 1, md: 1 }, display: 'flex', justifyContent: 'center', alignItems: 'center' }} // Center logo for mobile
+          onMouseEnter={() => setHovered(true)} // Trigger hover state
+          onMouseLeave={() => setHovered(false)} // Remove hover state
+        >
+          <Link href="/" passHref>
+            <Box
+              component="img"
+              src={hovered ? "/images/logoHover.png" : "/images/logo.png"} // Switch images based on hover state
+              alt="Logo"
+              sx={{ width: { xs: '50px', md: '60px' }, height: 'auto', cursor: 'pointer' }} // Adjust size for mobile
+            />
+          </Link>
+        </Box>
+
+        {/* Right: "Let's Connect!" Button */}
+        <Box sx={{ display: { xs: 'flex', md: 'none' }, justifyContent: "flex-end", flexGrow: 1 }}>
+          <Button 
+            variant="contained" 
+            sx={{ 
+              fontSize: "14px", // Smaller font for mobile
+              textTransform: 'none', 
+              backgroundColor: "#002366", 
+              borderRadius: "22px", 
+              paddingX: "15px", // Adjust padding for mobile
+              boxShadow: "none",
+              '&:hover': {
+                backgroundColor: 'rgba(0, 35, 102, 0.7)', // Same background color on hover
+                color: '#fff',
+                boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.2)",
+              },
+            }} 
+            href="https://www.linkedin.com/in/audreylii/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            Let&apos;s Connect!
+          </Button>
+        </Box>
+
+        {/* Center: Navigation buttons for Desktop (hidden on mobile) */}
+        <Box sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center', gap: '20px', flexGrow: 2 }}>
+          <Link href="/WorkPage" passHref>
             <CustomButton variantType="header" sx={{ textTransform: 'none' }}>Work</CustomButton>
           </Link>
-          <Link href="/projects" passHref>
+          <Link href="/ProjectsPage" passHref>
             <CustomButton variantType="header" sx={{ textTransform: 'none' }}>Projects</CustomButton>
           </Link>
           <Link href="/GraphicsPage" passHref>
@@ -38,23 +135,31 @@ export default function Header() {
           </Link>
         </Box>
 
-        {/* Right: "Let's Connect!" Button */}
-        <Box sx={{ flexGrow: 1, textAlign: "right" }}>
-        <Button 
+        {/* Right: "Let's Connect!" Button for Desktop */}
+        <Box sx={{ display: { xs: 'none', md: 'flex' }, flexGrow: 1, justifyContent: 'flex-end' }}>
+          <Button 
             variant="contained" 
-            sx={{ textTransform: 'none', backgroundColor: "#002366", borderRadius: "22px", paddingX: "20px", 
-                '&:hover': {
-                    backgroundColor: '#F8F8F8', // Light grey background
-                    color: '#002366',
-                },
-             }} 
+            sx={{ 
+              fontSize: "18px",
+              textTransform: 'none', 
+              backgroundColor: "#002366", 
+              borderRadius: "22px", 
+              paddingX: "20px", 
+              boxShadow: "none",
+              '&:hover': {
+                backgroundColor: 'rgba(0, 35, 102, 0.7)',
+                color: '#fff',
+                boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.2)",
+              },
+            }} 
             href="https://www.linkedin.com/in/audreylii/" 
-            target="_blank" // Open the link in a new tab
-            rel="noopener noreferrer" // For security reasons when using target="_blank"
+            target="_blank" 
+            rel="noopener noreferrer"
           >
             Let&apos;s Connect!
           </Button>
         </Box>
+
       </Toolbar>
     </AppBar>
   );

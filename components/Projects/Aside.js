@@ -2,40 +2,96 @@ import React from 'react';
 import { Box, Typography, Button, Card, CardMedia, CardContent } from '@mui/material';
 import Link from 'next/link';
 
-const Aside = ({ image, title, company, description, link, flip, width, height, marginTop }) => {
+const Aside = ({ image, blurImage, title, company, description, link, flip, width, height, marginTop }) => {
   return (
     <Card 
       sx={{ 
         display: 'flex', 
-        flexDirection: flip ? 'row-reverse' : 'row', // Conditionally flip layout
+        flexDirection: { xs: 'column', md: flip ? 'row-reverse' : 'row' }, 
         alignItems: 'center', 
         justifyContent: 'flex-start',
         boxShadow: 'none',
         border: 'none',
-        marginTop: marginTop
+        marginTop: marginTop,
+        position: 'relative', 
+        overflow: 'hidden', 
       }}
     >
-      <CardMedia
-        component="img"
-        sx={{ 
-          width: width, 
-          height: height, 
-          objectFit: 'cover', 
-          margin: '0 auto'
-        }}
-        image={image}
-        alt={title}
-      />
+      <Link href={link} passHref>
+        <Box 
+          sx={{ 
+            position: 'relative', 
+            width: { xs: '100%', md: width }, 
+            height: { xs: 'auto', md: height }, 
+            '&:hover .blurImage': { 
+              opacity: 1, 
+              transform: "scale(1.25)",
+            },
+            '&:hover .mainImage': { 
+              transform: "scale(1.04)", 
+            },
+            textDecoration: 'none', // Keep link styling
+            cursor: 'pointer', // Makes it clear it's clickable
+          }}
+        >
+          {/* Container for both images */}
+          <Box 
+            sx={{
+              position: 'relative',
+              width: { xs: '100%', md: width },
+              height: { xs: 'auto', md: height }, 
+            }}
+          >
+            {/* Blur Image */}
+            <CardMedia
+              component="img"
+              className="blurImage"
+              sx={{ 
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: { xs: 'auto', md: '100%' }, 
+                objectFit: 'cover',
+                filter: 'blur(8px)', 
+                opacity: 0, 
+                transition: 'opacity 0.3s ease-in-out', 
+                zIndex: 1 
+              }}
+              image={blurImage}
+              alt="Blurred Background"
+            />
+
+            {/* Main Image */}
+            <CardMedia
+              component="img"
+              className="mainImage"
+              sx={{ 
+                position: 'relative', 
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: { xs: 'auto', md: '100%' },
+                objectFit: 'cover', 
+                transition: "transform 0.3s ease-in-out, opacity 0.3s ease-in-out", 
+                zIndex: 2 
+              }}
+              image={image}
+              alt={title}
+            />
+          </Box>
+        </Box>
+      </Link>
 
       <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '16px', textAlign: 'left' }}>
         <CardContent>
-          <Typography variant="h4" component="div" sx={{ marginBottom: '8px', lineHeight: "30px", color: "#444" }}>
+          <Typography variant="h3" component="div" sx={{ marginBottom: '15px', lineHeight: "45px", color: "#444" }}>
             {title}
           </Typography>
-          <Typography variant="h6" component="div" sx={{ marginBottom: '8px', color: "#666" }}>
+          <Typography variant="h4" component="div" sx={{ fontSize: "20px", marginBottom: '10px', color: "#666" }}>
             {company}
           </Typography>
-          <Typography variant="body2" sx={{ marginBottom: '12px', color: "#888" }}>
+          <Typography variant="body1" sx={{ fontSize: "16px", marginBottom: '12px', color: "#888" }}>
             {description}
           </Typography>
 
@@ -49,15 +105,17 @@ const Aside = ({ image, title, company, description, link, flip, width, height, 
                 borderRadius: "22px", 
                 paddingX: "30px", 
                 position: "relative",
-                transition: 'padding 0.3s ease', // Smooth padding transition
+                boxShadow: "none",
+                transition: 'padding 0.3s ease', 
                 '&:hover': {
-                  backgroundColor: '#F8F8F8', // Light grey background
-                  color: '#002366',
-                  paddingRight: '50px', // Increase padding to make space for arrow
+                  backgroundColor: 'rgba(0, 35, 102, 0.7)', 
+                  color: '#fff',
+                  boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.2)",
+                  paddingRight: '50px', 
                   '& .arrow': { 
-                    opacity: 1, // Make arrow visible
-                    transform: 'translateX(1px)', // Move the arrow to the right
-                    transition: 'transform 0.3s ease-in-out', // Smooth transition for movement
+                    opacity: 1, 
+                    transform: 'translateX(1px)', 
+                    transition: 'transform 0.3s ease-in-out', 
                   },
                 },
               }}
@@ -67,12 +125,12 @@ const Aside = ({ image, title, company, description, link, flip, width, height, 
                 component="span"
                 className="arrow"
                 sx={{
-                  opacity: 0, // Initially hidden
+                  opacity: 0, 
                   position: "absolute",
-                  right: 16, // Position on the right side inside the button
+                  right: 16, 
                   display: "inline-block",
                   paddingRight: "10px",
-                  transition: 'opacity 0.3s ease, transform 0.3s ease', // Smooth transition for appearance and movement
+                  transition: 'opacity 0.3s ease, transform 0.3s ease',
                 }}
               >
                 »

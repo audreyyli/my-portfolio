@@ -9,6 +9,7 @@ const Footer = () => {
   return (
     <Box 
       sx={{ 
+        maxWidth: "1200px",
         width: "100%", // Full width of the screen
         display: "flex", 
         alignItems: "center", 
@@ -18,13 +19,18 @@ const Footer = () => {
       }}
     >
       {/* Text */}
-      <Typography variant="body1" sx={{ color: "#888" }}>
+      <Typography 
+        variant="body1" 
+        sx={{ 
+          fontSize: { xs: "14px", sm: "16px", md: "20px" }, // Smaller font size for mobile
+          color: "#888" 
+        }}
+      >
         Made with ❤️, by Audrey
       </Typography>
 
       {/* Social Media Links */}
-      <Box sx={{ display: "flex", alignItems: "center", gap: "16px" }}>
-        <IconButton
+      <Box sx={{ display: "flex", alignItems: "center", gap: { xs: "8px", md: "16px" } }}>        <IconButton
           href="https://www.linkedin.com/in/audreylii"
           target="_blank"
           sx={{
@@ -36,7 +42,7 @@ const Footer = () => {
             },
           }}
         >
-          <LinkedInIcon sx={{ color: "#888" }} />
+          <LinkedInIcon sx={{ width: { xs: "25px", md: "35px" }, height: "auto", color: "#888" }} />
         </IconButton>
 
         <IconButton
@@ -51,7 +57,7 @@ const Footer = () => {
             },
           }}
         >
-          <GitHubIcon sx={{ color: "#888" }} />
+          <GitHubIcon sx={{ width: { xs: "25px", md: "35px" }, height: "auto", color: "#888" }} />
         </IconButton>
 
         <IconButton
@@ -65,7 +71,7 @@ const Footer = () => {
             },
           }}
         >
-          <MailIcon sx={{ color: "#888" }} />
+          <MailIcon sx={{ width: { xs: "25px", md: "35px" }, height: "auto", color: "#888" }} />
         </IconButton>
       </Box>
     </Box>

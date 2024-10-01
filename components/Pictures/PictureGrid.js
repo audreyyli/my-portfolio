@@ -1,4 +1,3 @@
-// components/PictureGrid.js
 import React from 'react';
 import { Grid, Box, Typography, Card, CardMedia } from '@mui/material';
 
@@ -6,12 +5,17 @@ const PictureGrid = ({ pictures }) => {
   return (
     <Grid
       container
-      spacing={1}
+      spacing={3}
       sx={{
+        paddingLeft: "25px",
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(440px, 1fr))',
-        gap: '25px',
-        justifyContent: 'left',
+        gridTemplateColumns: {
+          xs: '1fr', // 1 column for extra-small screens (mobile)
+          sm: '1fr 1fr', // 2 columns for small screens
+          md: 'repeat(2, 1fr)', // 2 columns for medium screens
+          lg: 'repeat(3, 1fr)', // 3 columns for large screens
+        },
+        gap: '25px', // Adjust the gap between items
       }}
     >
       {pictures.map((pic, index) => (
@@ -22,10 +26,10 @@ const PictureGrid = ({ pictures }) => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'flex-start',
-            width: '470px',
+            width: '100%', // Full width of the column
             height: 'auto',
             backgroundColor: '#F8F8F8',
-            borderRadius: '25px',
+            borderRadius: '20px',
             boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
             padding: '20px',
           }}
@@ -35,15 +39,15 @@ const PictureGrid = ({ pictures }) => {
             src={pic.image}
             alt={pic.alt}
             sx={{
-              width: 'calc(100% - 10px)',
-              height: 'auto',
+              width: '100%', // Full width
+              height: 'auto', // Maintain aspect ratio
               marginBottom: '10px',
-              borderRadius: '18px',
+              borderRadius: '15px',
             }}
           />
           <Box sx={{ width: '100%', textAlign: 'left' }}>
             <Typography
-              variant="h5"
+              variant="h6"
               component="p"
               sx={{ fontWeight: 600, marginBottom: '5px', color: "#444" }}
             >
